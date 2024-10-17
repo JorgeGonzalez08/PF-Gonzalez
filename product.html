@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1b9706a689.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Producto</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__h1"><i class="fa-solid fa-star" style="color: #FFD43B;"></i></i> Star Phone <i
+                class="fa-solid fa-star" style="color: #FFD43B;"></i></h1>
+        <nav class="header__nav">
+            <ul class="header__ul">
+                <li><a class="header__a" href="#">Inicio</a></li>
+                <li><a class="header__a activo" href="./index.html">Catálogo</a></li>
+                <li><a class="header__a" href="#">Sucursales</a></li>
+            </ul>
+        </nav>
+        <button class="header__open-cart"><i class="fa-solid fa-cart-shopping fa-2xl" style="color: #ffffff;"></i>Carrito</button>
+    </header>
+    <main>
+        <nav class="main__route">
+            <ul class="main__breadcrumb">
+                <li><a href="">Inicio </a></li>
+                <li> > </li>
+                <li> <a href="./index.html">Catálogo</a></li>
+                <li> > </li>
+                <li class="breadcrumb-product"> </li>
+            </ul>
+        </nav>
+        <section class="main__section">
+        </section>
+        <div class="main__cart-shop">
+            <button class="main__close-cart"><i class="close-cart fa-solid fa-xmark fa-2xl"></i></button>
+            <h2 class="main__cart-title">Carrito</h2>
+            <div class="main__cart-empty">
+                <i class="fa-solid fa-cart-shopping fa-2xl" ></i>
+                Tu carrito esta vacío
+            </div>
+            <div class="main__cart-full">
+                <div class="main__cart-products">                    
+                </div>
+                <div class="main__cart-payment">
+                    <div class="main__cart-total">
+                        <p>Costo de envio:</p>
+                        <p>GRATIS</p>
+                    </div>
+                    <div class="main__cart-total">
+                        <p>TOTAL</p>
+                        <p id="total">$ </p>
+                    </div>
+                    <button class="main__cart-buy">COMPRAR</button>
+                </div>
+            </div>
+        </div>
+        <section class="main__product">
+            <div class="main__images">
+                <div class="main__gallery">
+                </div>
+            </div>
+            <div class="main__desc">
+                <p class="main__desc-title"></p>
+                <p class="main__desc-code"></p>
+                <p class="main__desc-price"></p>
+                
+                <p class="main__desc-text">Color: <span class="color"></span></p>
+                <div class="main__desc-colors">
+                </div>
+                <p class="main__desc-text">Almacenamiento: <span class="storage"></span></p>
+                <div class="main__desc-storages">
+                </div>
+                <div class="main__desc-buttons">
+                </div>
+                <button class="main__desc-button width">AGREGAR AL CARRITO</button>
+                <p class="main__desc-text">Descripcion: </p>
+                <p class="description"></p>
+            </div>
+        </section>
+    </main>
+ <footer class="footer">
+        <div>
+            <h2 class="footer__h2">INICIO</h2>
+            <ul>
+                <li><a class="footer__a" href="#">Blog</a></li>
+                <li><a class="footer__a" href="#">Facturación</a></li>
+                <li><a class="footer__a" href="#">Bolsa de Trabajo</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="footer__h2">LEGALES</h2>
+            <ul>
+                <li><a class="footer__a" href="#">Aviso de Privacidad</a></li>
+                <li><a class="footer__a" href="#">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="footer__h2">SIGUENOS</h2>
+            <ul class="footer__ul">
+                <li><a href="#"><i class="fa-brands fa-facebook fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#"><i class="fa-brands fa-square-instagram fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-square-x-twitter fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-tiktok fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="./js/product.js" type="module"></script>
+</body>
+</html>

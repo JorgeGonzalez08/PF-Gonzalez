@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/1b9706a689.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Star Phone ⭐</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__h1"><i class="fa-solid fa-star" style="color: #FFD43B;"></i></i> Star Phone <i
+                class="fa-solid fa-star" style="color: #FFD43B;"></i></h1>
+        <nav class="header__nav">
+            <ul class="header__ul">
+                <li><a class="header__a" href="#">Inicio</a></li>
+                <li><a class="header__a activo" href="#">Catálogo</a></li>
+                <li><a class="header__a" href="#">Sucursales</a></li>
+            </ul>
+        </nav>
+        <button class="header__open-cart"><i class="fa-solid fa-cart-shopping fa-2xl"
+                style="color: #ffffff;"></i>Carrito</button>
+    </header>
+    <main class="main">
+        <section class="main__section">
+        </section>
+        <div class="main__cart-shop">
+            <button class="main__close-cart"><i class="close-cart fa-solid fa-xmark fa-2xl"></i></button>
+            <h2>Carrito</h2>
+            <div class="main__cart-empty">
+                <i class="fa-solid fa-cart-shopping fa-2xl" ></i>
+                Tu carrito esta vacío
+            </div>
+            <div class="main__cart-full">
+                <div class="main__cart-products">
+                    
+                </div>
+                <div class="main__cart-payment">
+                    <div class="main__cart-total">
+                        <p>Costo de envio:</p>
+                        <p>GRATIS</p>
+                    </div>
+                    <div class="main__cart-total">
+                        <p>TOTAL</p>
+                        <p id="total">$ </p>
+                    </div>
+                    <button class="main__cart-buy">COMPRAR</button>
+                </div>
+            </div>
+        </div>
+        <div class="main__container">
+            <div class="main__filters">
+                <nav>
+                    <ul class="main__breadcrumb">
+                        <li><a href="#">Inicio </a></li>
+                        <li> > </li>
+                        <li> Catálogo</li>
+                    </ul>
+                </nav>
+                <div class="main__filter">
+                    <p class="main__title">Ordenar por:</p>
+                    <select id="sort" class="main__selected">
+                        <option value="high">Mayor a menor</option>
+                        <option value="low">Menor a mayor</option>
+                    </select>
+                </div>
+                <div class="main__filter" >
+                    <p class="main__title">Marca</p>
+                    <select id="brand" class="main__selected">
+                        <option value="all">Todas</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Huawei">Huawei</option>
+                        <option value="Oppo Reno">Oppo Reno</option>
+                        <option value="Realme">Realme</option>
+                    </select>
+                </div>
+            </div>
+            <div class="main__products">
+                <h2 class="main__h2">Celulares</h2>
+                <div class="main__cards">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div>
+            <h2 class="footer__h2">INICIO</h2>
+            <ul>
+                <li><a class="footer__a" href="#">Blog</a></li>
+                <li><a class="footer__a" href="#">Facturación</a></li>
+                <li><a class="footer__a" href="#">Bolsa de Trabajo</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="footer__h2">LEGALES</h2>
+            <ul>
+                <li><a class="footer__a" href="#">Aviso de Privacidad</a></li>
+                <li><a class="footer__a" href="#">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="footer__h2">SIGUENOS</h2>
+            <ul class="footer__ul">
+                <li><a href="#"><i class="fa-brands fa-facebook fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a>
+                </li>
+                <li><a href="#"><i class="fa-brands fa-square-instagram fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-square-x-twitter fa-xl" style="color: #ffffff;"
+                            aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-tiktok fa-xl" style="color: #ffffff;" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script src="./js/app.js" type="module"></script>
+</body>
+
+</html>
