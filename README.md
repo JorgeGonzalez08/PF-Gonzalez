@@ -11,8 +11,6 @@ Al dar click en el carrito de compras se mostraran todos los productos del carri
 > [!NOTE]
 > En caso de dejar el formulario vacio y dar click en el boton FINALIZAR COMPRA, aparecera una notificación de error.
 
-
-
 ## Realizado con:
 - [React](https://es.react.dev/) + [vite](https://es.vitejs.dev/)
 
@@ -25,6 +23,10 @@ Al dar click en el carrito de compras se mostraran todos los productos del carri
 
 ## Plataformas:
 - [Firebase](https://firebase.google.com/)
+- [Netlify](https://www.netlify.com/)
 
 # Instalaciones necesarias: 
 - Ejecutar "npm install" para crear la carpeta node_modules
+
+# Despliegue 🚀
+- [Link](https://star-phone.netlify.app/)
