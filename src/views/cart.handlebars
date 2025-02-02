@@ -1,0 +1,13 @@
+<h1>Carrito (cid): {{cart._id}}</h1>
+<div class="products">
+    {{#each cart.products}}
+    <div class="product">
+        <h3 class="product__title">{{pid.title}}</h3>
+        <p>Descripción: {{pid.description}}</p>
+        <p>Código: {{pid.code}}</p>
+        <p>Precio: ${{pid.price}}</p>
+        <p>Cantidad: {{quantity}}</p>
+    </div>
+    {{/each}}
+</div>
+<a href="/products" class="container__button">Ir a productos</a>

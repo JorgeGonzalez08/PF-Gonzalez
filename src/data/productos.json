@@ -1,0 +1,35 @@
+[
+     {
+          "pid": 1,
+          "title": "Coca-cola",
+          "description": "refresco",
+          "code": "cocacola01",
+          "price": 15,
+          "stock": 80,
+          "category": "bebidas",
+          "status": true,
+          "thumbnails": []
+     },
+     {
+          "pid": 2,
+          "title": "Sabritas",
+          "description": "papas",
+          "code": "sabritas01",
+          "price": 14,
+          "stock": 60,
+          "category": "botanas",
+          "status": true,
+          "thumbnails": []
+     },
+     {
+          "pid": 3,
+          "title": "Donas Bimbo",
+          "description": "donas con azucar",
+          "code": "donas01",
+          "price": 16,
+          "stock": 45,
+          "category": "pan",
+          "status": true,
+          "thumbnails": []
+     }
+]

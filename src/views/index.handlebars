@@ -1,0 +1,46 @@
+<h1 class="title">Productos</h1>
+<div class="container">
+    <div >
+        <a href="/products?page=1" class="container__button">Pág.1</a>
+
+        {{#if hasPrevPage}}
+        <a href="/products?page={{prevPage}}"class="container__button">Pág.Ant. {{prevPage}}</a>
+        {{else}}
+        <a href="/products?page={{prevPage}}" class="container__button disabled">Pág.Ant.</a>
+        {{/if}}
+
+        {{#if hasNextPage}}
+        <a href="/products?page={{nextPage}}"class="container__button">Pág.Sig. {{nextPage}}</a>
+        {{else}}
+        <a href="/products?page={{nextPage}}" class="container__button disabled">Pág.Sig.</a>
+        {{/if}}
+
+        <a href="/products?page={{totalPages}}" class="container__button">Ult.Pág</a>
+    </div>
+
+    <div class="container__select">
+        <p>Selecciona un carrito: </p>
+        <select name="selectCart" id="selectCart">
+            {{#each carts}}
+            <option value="{{_id}}">{{_id}}</option>
+            {{/each}}
+        </select>
+    </div>
+    <div>
+        <a class="container__button" id="linkCart">Ver carrito</a>
+    </div>
+</div>
+
+<div class="products">
+    {{#each products}}
+    <div class="product">
+        <h3 class="product__title">{{title}}</h3>
+        <p>Precio: ${{price}}</p>
+        <p>Categoria: {{category}}</p>
+        <a href="/products/{{_id}}" class="form__button">Ver producto</a>
+        <button class="form__button" onclick="addCart('{{_id}}')">Agregar al carrito</button>
+    </div>
+    {{/each}}
+</div>
+
+<script src="/js/cart.js"></script>
