@@ -1,5 +1,9 @@
 # Entrega Final
 
+## Conexión a BD por mongosh
+- mongosh "mongodb+srv://cluster0.p5kr7.mongodb.net/" --apiVersion 1 --username jorge2508
+- Password: Jorge2508
+
 ## Realizado con:
 - [Javascript](https://developer.mozilla.org/es/docs/Web/JavaScript)
 - [Node](https://nodejs.org/en/)
