@@ -34,9 +34,9 @@ Este comando descarga la imagen de docker hub, una ves descargada ejecutar el si
 
 # URL de Railway
 
-```bash
+Login => https://pf-gonzalez-production.up.railway.app/login
 
-```
+Registro => https://pf-gonzalez-production.up.railway.app/register
 
 # Documentacion en Swagger
 
