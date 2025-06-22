@@ -25,12 +25,10 @@
 ```bash
 docker pull jorge2508/entregafinal-70435:1.0.0
 ```
-
+Este comando descarga la imagen de docker hub, una ves descargada ejecutar el siguiente comando para levantar el servidor
 ```bash
 docker run -p 8080:8080 jorge2508/entregafinal-70435:1.0.0
 ```
-
-Este comando descarga la imagen de docker hub, una ves descargada ejecutar el siguiente comando para levantar el servidor
 
 # URL de Railway
 
