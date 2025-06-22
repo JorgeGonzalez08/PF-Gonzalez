@@ -1,0 +1,353 @@
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID del producto generado por MongoDB.
+        title:
+          type: string
+          description: Nombre del producto.
+        description:
+          type: string
+          description: Descripción detallada del producto.
+        code:
+          type: string
+          description: Código único del producto.
+        price:
+          type: number
+          description: Precio del producto.
+        status:
+          type: boolean
+          description: Estado del producto (disponible o no).
+        stock:
+          type: number
+          description: Cantidad de unidades en stock.
+        category:
+          type: string
+          description: Categoría a la que pertenece el producto.
+        thumbnails:
+          type: array
+          items:
+            type: string
+          description: URLs de las imágenes del producto.
+      example:
+        _id: '64a5f4e3e6e2b8c5a2e5d0f1'
+        title: 'Laptop Pro'
+        description: 'Una laptop potente para profesionales.'
+        code: 'LP001'
+        price: 1500
+        status: true
+        stock: 50
+        category: 'Electrónica'
+        thumbnails: ['http://example.com/img1.jpg']
+  responses:
+    error400:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Invalid id
+    error404:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Not found
+    error500:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Fatal error
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+paths:
+  /api/products:
+    get:
+      summary: Obtener lista de productos
+      description: Devuelve una lista paginada de productos. Se puede filtrar y ordenar.
+      tags:
+        - Products
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Número de productos por página.
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Número de la página a obtener.
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [asc, desc]
+          description: Ordenar por precio (ascendente o descendente).
+        - name: query
+          in: query
+          schema:
+            type: string
+          description: Filtro por categoría o disponibilidad (ej. `category:Electrónica`).
+      responses:
+        '200':
+          description: Lista de productos obtenida con éxito.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  pagination:
+                    type: object
+                    properties:
+                      totalDocs:
+                        type: number
+                        example: 8
+                      limit:
+                        type: number
+                        example: 10
+                      totalPages:
+                        type: number
+                        example: 1
+                      page:
+                        type: number
+                        example: 1
+                      hasPrevPage:
+                        type: boolean
+                        example: false
+                      hasNextPage:
+                        type: boolean
+                        example: false
+                      prevPage:
+                        example: null
+                      nextPage:
+                        example: null
+        '404':
+          description: Productos no encontrados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error del lado del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    post:
+      summary: Crear un nuevo producto
+      description: Agrega un nuevo producto a la base de datos.
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            example:
+              title: 'Teclado Mecánico'
+              description: 'Teclado retroiluminado RGB.'
+              code: 'TM002'
+              price: 120
+              stock: 30
+              category: 'Accesorios'
+      security:
+        - cookieAuth: []
+      responses:
+        '201':
+          description: Producto creado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: created product
+                  product:
+                    type: object
+                    $ref: '#/components/schemas/Product'
+        '400':
+          description: ID de producto duplicado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error400'
+        '500':
+          description: Error del lado del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+
+  /api/products/{pid}:
+    get:
+      summary: Obtener un producto por ID
+      description: Devuelve los detalles de un producto específico.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del producto a obtener.
+      responses:
+        '200':
+          description: Producto encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error del lado del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    put:
+      summary: Actualizar un producto
+      description: Modifica los datos de un producto existente.
+      tags:
+        - Products
+      security:
+        - cookieAuth: []
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del producto a actualizar.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+            example:
+              title: 'Teclado Mecánico'
+              description: 'Teclado retroiluminado RGB.'
+              code: 'TM002'
+              price: 120
+              stock: 30
+              category: 'Accesorios'
+      responses:
+        '200':
+          description: Producto actualizado correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: updated product
+                  product:
+                    type: object
+                    $ref: '#/components/schemas/Product'
+        '400':
+          description: ID de producto invalido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error400'
+        '404':
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error del lado del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    delete:
+      summary: Eliminar un producto
+      description: Elimina un producto de la base de datos. Requiere ser el propietario o admin.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID del producto a eliminar.
+      responses:
+        '200':
+          description: Producto eliminado correctamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: deleted product
+                  product:
+                    type: object
+                    $ref: '#/components/schemas/Product'
+        '400':
+          description: ID de producto invalido.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error400'
+        '404':
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error del lado del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+      security:
+        - cookieAuth: []

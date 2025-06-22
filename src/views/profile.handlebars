@@ -1,0 +1,13 @@
+<h1> Bienvenido!!!</h1>
+<p> Has iniciado sesión como: <h2>{{user.user_name}} </h2></p>
+<p> rol: <h3>{{user.rol}} </h3></p>
+
+{{#if isAdmin}}
+        <a class="container__button" href="/realtimeproducts">Crear productos</a></button>
+{{else}}
+        <a class="container__button" href="/products">Ir a productos</a>   
+{{/if}}
+
+<form action="/api/sessions/logout" method="POST">
+    <button class="product__delete" type="submit"> Logout </button>
+</form>

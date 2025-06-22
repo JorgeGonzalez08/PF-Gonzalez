@@ -1,0 +1,154 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          description: Nombre del usuario
+          type: string
+        last_name:
+          description: Apellido del usuario
+          type: string
+        email:
+          description: Email del usuario
+          type: string
+          format: email
+        age:
+          description: Edad del usuario
+          type: number
+        password:
+          type: string
+          description: Contraseña del usuario
+          format: password
+        role:
+          type: string
+          description: Rol del usuario
+          enum: [user, admin, premium]
+        cart:
+          type: string
+          description: 'ID del carrito asociado al usuario.'
+      example:
+        first_name: 'Juan'
+        last_name: 'Pérez'
+        email: 'juan.perez@example.com'
+        age: 28
+        password: 'password123'
+        role: 'user'
+        cart: '64a5f5f7e6e2b8c5a2e5d0f5'
+  responses:
+    error400:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Invalid data
+    error401:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Invalid credentials
+    error500:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Fatal error
+paths:
+  /api/sessions/login:
+    post:
+      summary: Inicia la sesión de un usuario, guardando el token en una cookie
+      tags:
+        - User Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  description: Nombre de usuario
+                  type: string
+                password:
+                  description: Contraseña para iniciar sesión
+                  type: string
+              example:
+                first_name: ana
+                password: 'ana'
+      responses:
+        '200':
+          description: Exito en el inicio de sesión
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type:
+                    example: logged in
+        '400':
+          description: Falta de algún dato válido para el inicio de sesión
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error400'
+        '401':
+          description: Credenciales inválidas para el inicio de sesión
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error401'
+        '500':
+          description: Error del lado del servidor al iniciar sesión
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+  /api/sessions/logout:
+    post:
+      summary: Cerrar sesión
+      description: Invalida la sesión del usuario eliminando la cookie del token.
+      tags:
+        - User Logout
+      responses:
+        '200':
+          description: Logout exitoso. Redirige a la vista de login.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type:
+                    example: logout successful
+        '500':
+          description: Error del lado del servidor al cerrar sesión
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'

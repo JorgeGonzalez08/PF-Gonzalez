@@ -1,0 +1,21 @@
+
+
+ <div class="product">
+        <h3 class="product__title">{{product.title}}</h3>
+        <p>Descripción: {{product.description}}</p>
+        <p>Código: {{product.code}}</p>
+        <p>Precio: ${{product.price}}</p>
+        <p>Stock: {{product.stock}}</p>
+        <p>Categoria: {{product.category}}</p>
+        <div>
+    <p>Selecciona un carrito: </p>
+    <select name="selectCart" id="selectCart">
+        {{#each carts}}
+            <option value="{{_id}}">{{_id}}</option>
+        {{/each}}
+    </select>
+</div>
+        <button class="form__button" onclick="addCart('{{product._id}}')">Agregar al carrito</button>
+    </div>
+<a href="/products" class="container__button">Ir a productos</a>
+<script src="/js/cart.js"></script>

@@ -1,0 +1,348 @@
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+        products:
+          type: array
+          properties:
+            product:
+              type: string
+              description: ID del producto.
+            quantity:
+              type: integer
+              description: Cantidad del producto.
+      example:
+        _id: '64a5f5f7e6e2b8c5a2e5d0f5'
+        products: [{ _id: '64a5f4e3e6e2b8c5a2e5d0f1', quantity: 2 }]
+  responses:
+    error400:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Invalid data
+    error404:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Not found
+    error500:
+      type: object
+      properties:
+        status:
+          description: Estado de la operación
+          type: string
+        message:
+          description: Mensaje de error de la operación
+          type: string
+      example:
+        status: error
+        message: Fatal error
+paths:
+  /api/carts:
+    post:
+      summary: Crear un nuevo carrito de compra
+      tags: [Carts]
+      responses:
+        '201':
+          description: Carrito creado con éxito.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 64a5f5f7e6e2b8c5a2e5d0f5
+                  products:
+                    type: array
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+  /api/carts/{cid}:
+    get:
+      summary: Obtener un carrito por su ID
+      tags: [Carts]
+      parameters:
+        - name: cid
+          in: path
+          description: ID del carrito a obtener.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Carrito obtenido con éxito.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 64a5f5f7e6e2b8c5a2e5d0f5
+                  products:
+                    type: array
+        '404':
+          description: Carrito no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    put:
+      summary: Actualizar un carrito con un arreglo de productos
+      tags: [Carts]
+      parameters:
+        - name: cid
+          in: path
+          description: ID del carrito a actualizar.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product:
+                  type: string
+                  description: ID del producto.
+                quantity:
+                  type: integer
+                  description: Cantidad del producto.
+              example:
+                product: '64a2f7e4e6a4b3d3f4e8d3c1'
+                quantity: 2
+      responses:
+        '200':
+          description: Carrito actualizado con éxito.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '404':
+          description: Carrito no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    delete:
+      summary: Vaciar todos los productos de un carrito
+      tags: [Carts]
+      parameters:
+        - name: cid
+          in: path
+          description: ID del carrito a vaciar.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Carrito vaciado con éxito.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 64a5f5f7e6e2b8c5a2e5d0f5
+                  products:
+                    type: array
+        '404':
+          description: Carrito no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Agregar un producto a un carrito
+      tags: [Carts]
+      description: Agrega una unidad de un producto específico al carrito.
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Producto agregado con éxito.
+        '404':
+          description: Carrito o producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    put:
+      summary: Actualizar la cantidad de un producto en el carrito
+      tags: [Carts]
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  description: Nueva cantidad del producto.
+                  example: 5
+      responses:
+        '200':
+          description: Cantidad actualizada con éxito.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        '404':
+          description: Carrito o producto no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+    delete:
+      summary: Eliminar un producto de un carrito
+      tags: [Carts]
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Producto eliminado del carrito con éxito.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 64a5f5f7e6e2b8c5a2e5d0f5
+                  products:
+                    type: array
+        '404':
+          description: Carrito o producto no encontrado en el carrito.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Finalizar el proceso de compra
+      tags: [Carts]
+      description: Genera un ticket de compra con los productos que tienen stock suficiente y actualiza el carrito con los productos que no se pudieron comprar.
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Compra procesada. Devuelve el ticket y los productos no procesados.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ticket:
+                    $ref: '#/components/schemas/Ticket'
+                  productsNotPurchased:
+                    type: array
+                    items:
+                      type: string
+                      description: IDs de los productos no comprados.
+        '404':
+          description: Carrito no encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error404'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/responses/error500'

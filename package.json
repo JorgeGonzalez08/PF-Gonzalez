@@ -1,0 +1,43 @@
+{
+  "name": "pf-gonzalez",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/app.js --mode=prod",
+    "dev": "node --watch ./src/app.js --mode=dev",
+    "test": "node ./src/app.js --mode=test",
+    "mocha": "mocha ./test/mocha",
+    "super": "mocha ./test/supertest --mode=test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "commander": "^13.1.0",
+    "cookie-parser": "^1.4.7",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-handlebars": "^8.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "minimist": "^1.2.8",
+    "mongoose": "^8.12.0",
+    "mongoose-paginate-v2": "^1.9.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "socket.io": "^4.8.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.8.0",
+    "chai": "^5.2.0",
+    "mocha": "^11.7.0",
+    "supertest": "^7.1.1"
+  }
+}

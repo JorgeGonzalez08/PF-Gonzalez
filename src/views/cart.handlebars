@@ -1,0 +1,35 @@
+<div>
+    <h2>Carrito</h2>
+</div>
+<div class="infoContain">
+    <button class="btn-form container__button"><a href="/products">Regresar</a></button>
+</div>
+<div class="cartContainer " data-cart-id="{{cid}}">
+        <ul class="productContain product">
+            {{#each cart}}
+                <li class="cartProduct product">
+                    
+                    <div class="infoContain">
+                        <p class="product__title"><span class="font">Titulo:</span> {{this.title}}</p>
+                    </div>
+                    <div class="infoContain">
+                        <p><span class="font">Cantidad:</span> {{this.quantity}}</p>
+                        <p><span class="font">Categoria:</span> {{this.category}}</p>
+                        <p><span class="font">Precio:</span> ${{this.price}}</p>
+                    </div>
+                </li>
+            {{/each}}
+        </ul>
+
+</div>
+
+<div class="actionContain">
+    <div>
+        <button class="btn-form cleanCart product__delete">Vaciar carrito</button>
+    </div>
+    <div>
+        <button class="btn-form buyCart form__button">Finalizar compra</button>
+    </div>
+</div>
+
+<script type="module" src="/js/purchase.js"></script>

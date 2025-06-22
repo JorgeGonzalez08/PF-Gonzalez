@@ -1,0 +1,25 @@
+<a class="container__button" href="/api/sessions/current">Regresar</a>
+<div class="createProducts">
+    <h1>Crear productos</h1>
+    <form class="form"  >
+        <label for="title">Título</label>
+        <input class="form__input" type="text" id="title">
+        <label for="desc">Descripción</label>
+        <input class="form__input" type="text" id="desc">
+        <label for="code">Código</label>
+        <input class="form__input" type="text" id="code">
+        <label for="price">Precio</label>
+        <input class="form__input" type="text" id="price">
+        <label for="stock">Stock</label>
+        <input class="form__input" type="text" id="stock">
+        <label for="category">Categoria</label>
+        <input class="form__input" type="text" id="category">
+        <button class="form__button" type="submit"  id="submit">Crear</button>
+    </form>
+</div>
+<h2>Productos</h2>
+<div class="products">
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
